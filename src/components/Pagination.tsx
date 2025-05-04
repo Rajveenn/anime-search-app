@@ -9,7 +9,7 @@ export default function Pagination({
   lastPage: number;
 }) {
   return (
-    <div className="flex justify-center items-center mt-10 mb-5 space-x-4 flex-wrap">
+    <div className="flex justify-center items-center mt-10 space-x-4 flex-wrap">
       <button
         onClick={() => setPage(page - 1)}
         disabled={page === 1}
