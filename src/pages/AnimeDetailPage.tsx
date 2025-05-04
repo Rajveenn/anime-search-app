@@ -27,7 +27,7 @@ export default function AnimeDetailPage() {
 
   return (
     <main className="pt-6">
-      <section className="relative bg-slate-200 min-h-screen pt-20 px-4">
+      <section className="relative bg-slate-200 pt-20 px-4 min-h-dvh">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 items-start">
           <img
             src={anime.images.webp.image_url}
