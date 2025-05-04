@@ -15,15 +15,18 @@ export default function SearchPage() {
 
   useEffect(() => {
     const debouncedFetch = debounce(async () => {
-      if (!query) return;
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(`${baseUrl}/anime?q=${query}&page=${page}`);
+        const url = query
+          ? `${baseUrl}/anime?q=${query}&page=${page}`
+          : `${baseUrl}/top/anime?limit=10`;
+
+        const res = await fetch(url);
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setResults(data.data);
-        setLastPage(data.pagination.last_visible_page);
+        setLastPage(data.pagination?.last_visible_page || 1);
       } catch (err) {
         console.error(err);
         setResults([]);
@@ -38,11 +41,12 @@ export default function SearchPage() {
   }, [query, page, baseUrl]);
 
   return (
-    <main className="p-6">
+    <main className="py-6">
       <section className="relative bg-slate-200 min-h-screen pt-20">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          {/* Search Input */}
           <div className="relative mb-6">
-            <div className="relative">
+            <div className="relative px-5">
               <input
                 type="text"
                 placeholder="Search anime..."
@@ -53,7 +57,7 @@ export default function SearchPage() {
                 }}
               />
               <svg
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-black"
+                className="absolute right-8 top-1/2 transform -translate-y-1/2 w-5 h-5 text-black"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -69,22 +73,34 @@ export default function SearchPage() {
             </div>
           </div>
 
+          {/* Loading, Error, and Results */}
           {loading ? (
-            <p className="text-white">Loading...</p>
+            <p className="text-gray-700">Loading...</p>
           ) : error ? (
-            <p className="text-red-300 font-medium">{error}</p>
-          ) : results.length === 0 && query ? (
-            <p className="text-white">No results found for "{query}".</p>
+            <p className="text-red-500 font-medium">{error}</p>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {results.map((anime: any) => (
-                <AnimeCard key={anime.mal_id} anime={anime} />
-              ))}
-            </div>
+            <>
+              <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                {query ? `Search Results for "${query}"` : "Top 10 Anime"}
+              </h2>
+
+              {results.length > 0 ? (
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {results.map((anime: any) => (
+                    <AnimeCard key={anime.mal_id} anime={anime} />
+                  ))}
+                </div>
+              ) : query ? (
+                <p className="text-gray-700">No results found for "{query}".</p>
+              ) : null}
+            </>
           )}
 
+          {/* Pagination only for search results */}
           <div className="mt-10">
-            <Pagination page={page} setPage={setPage} lastPage={lastPage} />
+            {query && lastPage > 1 && (
+              <Pagination page={page} setPage={setPage} lastPage={lastPage} />
+            )}
           </div>
         </div>
       </section>
