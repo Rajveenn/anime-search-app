@@ -80,7 +80,7 @@ export default function SearchPage() {
             <p className="text-red-500 font-medium">{error}</p>
           ) : (
             <>
-              <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              <h2 className="text-2xl font-bold my-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                 {query ? `Search Results for "${query}"` : "Top 10 Anime"}
               </h2>
 
@@ -91,7 +91,7 @@ export default function SearchPage() {
                   ))}
                 </div>
               ) : query ? (
-                <p className="text-gray-700">No results found for "{query}".</p>
+                <p className="text-gray-700 my-6">No results found for "{query}".</p>
               ) : null}
             </>
           )}
