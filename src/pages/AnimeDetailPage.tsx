@@ -26,7 +26,7 @@ export default function AnimeDetailPage() {
   if (!anime) return <p className="p-6">Loading...</p>;
 
   return (
-    <main className="py-6">
+    <main className="pt-6">
       <section className="relative bg-slate-200 min-h-screen pt-20 px-4">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 items-start">
           <img
@@ -76,7 +76,7 @@ export default function AnimeDetailPage() {
             </div>
 
             <button
-              className="mt-6 inline-flex items-center gap-2 text-white bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:shadow-2xl font-bold rounded-lg text-sm px-5 py-2.5"
+              className="my-6 inline-flex items-center gap-2 text-white bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:shadow-2xl font-bold rounded-lg text-sm px-5 py-2.5"
               onClick={() => navigate(-1)}
             >
               <svg
