@@ -45,7 +45,7 @@ export default function SearchPage() {
       <section className="relative pt-20">
         <div className="max-w-4xl mx-auto text-center px-4">
           {/* Search Input */}
-          <div className="relative mb-6">
+          <div className="relative">
             <div className="relative px-5">
               <input
                 type="text"
@@ -97,7 +97,7 @@ export default function SearchPage() {
           )}
 
           {/* Pagination only for search results */}
-          <div className="my-6 bg-slate-200">
+          <div className="pt-6 bg-slate-200">
             {query && lastPage > 1 && (
               <Pagination page={page} setPage={setPage} lastPage={lastPage} />
             )}
