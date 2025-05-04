@@ -42,7 +42,7 @@ export default function SearchPage() {
 
   return (
     <main className="py-6">
-      <section className="relative bg-slate-200 min-h-screen pt-20">
+      <section className="relative bg-slate-200 min-h-dvh pt-20">
         <div className="max-w-4xl mx-auto text-center px-4">
           {/* Search Input */}
           <div className="relative mb-6">
