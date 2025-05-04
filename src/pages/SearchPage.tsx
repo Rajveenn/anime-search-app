@@ -41,7 +41,7 @@ export default function SearchPage() {
   }, [query, page, baseUrl]);
 
   return (
-    <main className="py-6">
+    <main className="pt-6">
       <section className="relative bg-slate-200 min-h-dvh pt-20">
         <div className="max-w-4xl mx-auto text-center px-4">
           {/* Search Input */}
@@ -97,7 +97,7 @@ export default function SearchPage() {
           )}
 
           {/* Pagination only for search results */}
-          <div className="mt-10">
+          <div className="my-6">
             {query && lastPage > 1 && (
               <Pagination page={page} setPage={setPage} lastPage={lastPage} />
             )}
